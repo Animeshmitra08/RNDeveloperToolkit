@@ -1,71 +1,134 @@
-# rn-development-toolkit README
+# RN Development Toolkit
 
-This is the README for your extension "rn-development-toolkit". After writing up a brief description, we recommend including the following sections.
+Developer utilities for **React Native** and **Expo**, right inside VS Code.
+
+Run Expo, build and ship with EAS, install packages, generate components and check your project's health from a single sidebar, without memorising CLI flags.
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+Open the **RN Toolkit** icon in the Activity Bar to see the toolkit panel. Every action is also available from the Command Palette (`Ctrl+Shift+P` / `Cmd+Shift+P`) under `RN Toolkit: …`.
 
-For example if there is an image subfolder under your extension project workspace:
+### Project Overview
 
-\!\[feature X\]\(images/feature-x.png\)
+- **Analyze Project**: detects whether the workspace is an Expo or React Native CLI project and shows the installed versions of React Native, Expo and Expo Router.
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+### Generators
+
+- **Create Component**: asks for a PascalCase name and an output folder (default `src/components`), then creates:
+
+  ```
+  src/components/UserCard/
+  ├── UserCard.tsx
+  └── UserCard.styles.ts
+  ```
+
+  If the files already exist, you are asked before they are overwritten. The output folder must be inside the workspace.
+
+- Create Screen, Create Hook and Create Service are coming soon.
+
+### Expo Commands
+
+| Action | Runs |
+|---|---|
+| Start Expo | `npx expo start` |
+| Run Android | `npx expo run:android` |
+| Run iOS | `npx expo run:ios` |
+| Start with Clear Cache | `npx expo start --clear` |
+| Expo Doctor | `npx expo-doctor` |
+| Fix Dependencies | `npx expo install --fix` |
+| Prebuild (Clean) | `npx expo prebuild --clean` (asks for confirmation, because it deletes and regenerates `android/` and `ios/`) |
+
+### Packages
+
+- **Install Package**: enter one or more package names separated by spaces (for example `react-native-reanimated @react-navigation/native@^7`), then choose **Dependency** or **Dev Dependency**.
+  - In **Expo** projects it runs `npx expo install`, which picks versions compatible with your Expo SDK.
+  - In **React Native CLI** projects it detects your package manager from the lock file and runs `bun add`, `pnpm add`, `yarn add` or `npm install`.
+
+### EAS Build & Deploy
+
+EAS commands run through `npx eas-cli`, so a global `eas-cli` install is optional.
+
+| Action | Runs |
+|---|---|
+| Login / Who Am I / Logout | `eas login`, `eas whoami`, `eas logout` |
+| Init Project | `eas init` (links the app to your Expo account) |
+| Configure Build | `eas build:configure` (creates `eas.json`) |
+| Build | `eas build --platform <platform> --profile <profile>` |
+| Build & Submit | `eas build … --auto-submit` |
+| Submit to Store | `eas submit --platform <platform> --profile <profile> [--latest]` |
+| Publish OTA Update | `eas update --branch <branch> --message "<message>"` |
+| Recent Builds | `eas build:list --limit 10` |
+| Manage Credentials | `eas credentials` |
+
+- **Build** and **Submit** ask you for the platform (Android, iOS or All) and a profile.
+- Profiles are read from the `build` and `submit` sections of your `eas.json`. If `eas.json` is missing, the toolkit offers to run **Configure Build** first.
+
+### Project Doctor
+
+- **Run Project Checks**: checks for `package.json` and `app.json`, reports the Expo and React Native versions, and warns if neither is installed or if Expo is present without React Native. It does not yet check whether dependency versions are compatible; use **Expo Doctor** for that.
+
+### Terminals
+
+Commands run in named terminals so they don't get in each other's way:
+
+- **RN Toolkit**: Expo commands (Metro, run, prebuild)
+- **EAS**: login, build, submit and update
+- **Packages**: package installs
+
+You can keep Metro running while you start an EAS build or install a package.
 
 ## Requirements
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
-
-## Extension Settings
-
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
-This extension contributes the following settings:
-
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+- VS Code `1.140.0` or later
+- [Node.js](https://nodejs.org/) (LTS) with `npx` available on your `PATH`
+- A React Native or Expo project open as the workspace root (the folder containing `package.json`)
+- For native runs: Android Studio / Android SDK for Android, and Xcode on macOS for iOS
+- For EAS: a free [Expo account](https://expo.dev/signup)
 
 ## Known Issues
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+- **Create Screen**, **Create Hook** and **Create Service** are placeholders. Their command (`rn-developer-toolkit.generatorComingSoon`) is not registered yet, so clicking them shows a "command not found" error.
+- Only the first folder of a multi-root workspace is used.
+- **Publish OTA Update** replaces double quotes in the message with single quotes, to avoid quoting problems between shells.
+
+## Development
+
+```bash
+npm install
+npm run compile   # or: npm run watch
+npm run lint
+npm test
+```
+
+Press `F5` in VS Code to launch an Extension Development Host with the extension loaded.
+
+### Project structure
+
+```
+src/
+├── extension.ts                 # Activation and command registration
+├── commands/
+│   ├── expoCommands.ts          # Shared terminal runner
+│   ├── easCommands.ts           # EAS login/build/submit/update
+│   └── packageCommands.ts       # Install Package
+├── generators/
+│   └── componentGenerator.ts    # Create Component
+├── providers/
+│   └── toolkitTreeProvider.ts   # Sidebar tree view
+└── diagonistics/
+    └── projectDoctor.ts
+resources/
+└── rn-toolkit.svg               # Activity Bar icon
+```
 
 ## Release Notes
 
-Users appreciate release notes as you update your extension.
+### 0.0.1
 
-### 1.0.0
+Initial release:
 
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
----
-
-## Following extension guidelines
-
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+- Sidebar with Project Overview, Generators, Expo Commands, Packages, EAS Build & Deploy and Project Doctor
+- Component generator
+- Expo run, clear cache, doctor, fix dependencies and clean prebuild commands
+- EAS login, init, configure, build, build & submit, submit, update, build list and credentials commands
+- Install Package with Expo SDK-aware installs and package manager detection

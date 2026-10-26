@@ -2,6 +2,7 @@
   "name": "rn-development-toolkit",
   "displayName": "RN Development Toolkit",
   "description": "Developer utilities for React Native and Expo",
+  "publisher": "animeshmitra",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.140.0"
@@ -12,10 +13,115 @@
   "activationEvents": [],
   "main": "./out/extension.js",
   "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "rnToolkitContainer",
+          "title": "RN Toolkit",
+          "icon": "resources/rn-toolkit.svg"
+        }
+      ]
+    },
+    "views": {
+      "rnToolkitContainer": [
+        {
+          "id": "rnToolkitView",
+          "name": "RN Developer Toolkit"
+        }
+      ]
+    },
     "commands": [
       {
-        "command": "rn-development-toolkit.helloWorld",
-        "title": "Hello World"
+        "command": "rn-developer-toolkit.showProjectInfo",
+        "title": "RN Toolkit: Analyze Project"
+      },
+      {
+        "command": "rn-developer-toolkit.expoStart",
+        "title": "RN Toolkit: Start Expo"
+      },
+      {
+        "command": "rn-developer-toolkit.expoAndroid",
+        "title": "RN Toolkit: Run Android"
+      },
+      {
+        "command": "rn-developer-toolkit.expoIOS",
+        "title": "RN Toolkit: Run iOS"
+      },
+      {
+        "command": "rn-developer-toolkit.expoClearCache",
+        "title": "RN Toolkit: Start Expo with Clear Cache"
+      },
+      {
+        "command": "rn-developer-toolkit.expoDoctor",
+        "title": "RN Toolkit: Expo Doctor"
+      },
+      {
+        "command": "rn-developer-toolkit.expoFixDependencies",
+        "title": "RN Toolkit: Fix Expo Dependencies"
+      },
+      {
+        "command": "rn-developer-toolkit.expoPrebuildClean",
+        "title": "RN Toolkit: Expo Prebuild (Clean)"
+      },
+      {
+        "command": "rn-developer-toolkit.installPackage",
+        "title": "RN Toolkit: Install Package"
+      },
+      {
+        "command": "rn-developer-toolkit.easLogin",
+        "title": "RN Toolkit: EAS Login"
+      },
+      {
+        "command": "rn-developer-toolkit.easLogout",
+        "title": "RN Toolkit: EAS Logout"
+      },
+      {
+        "command": "rn-developer-toolkit.easWhoAmI",
+        "title": "RN Toolkit: EAS Who Am I"
+      },
+      {
+        "command": "rn-developer-toolkit.easInit",
+        "title": "RN Toolkit: EAS Init Project"
+      },
+      {
+        "command": "rn-developer-toolkit.easBuildConfigure",
+        "title": "RN Toolkit: EAS Configure Build"
+      },
+      {
+        "command": "rn-developer-toolkit.easBuild",
+        "title": "RN Toolkit: EAS Build"
+      },
+      {
+        "command": "rn-developer-toolkit.easBuildAndSubmit",
+        "title": "RN Toolkit: EAS Build & Submit"
+      },
+      {
+        "command": "rn-developer-toolkit.easSubmit",
+        "title": "RN Toolkit: EAS Submit to Store"
+      },
+      {
+        "command": "rn-developer-toolkit.easUpdate",
+        "title": "RN Toolkit: EAS Publish OTA Update"
+      },
+      {
+        "command": "rn-developer-toolkit.easBuildList",
+        "title": "RN Toolkit: EAS Recent Builds"
+      },
+      {
+        "command": "rn-developer-toolkit.easCredentials",
+        "title": "RN Toolkit: EAS Manage Credentials"
+      },
+      {
+        "command": "rn-developer-toolkit.generatorComingSoon",
+        "title": "RN Toolkit: Generator Coming Soon"
+      },
+      {
+        "command": "rn-developer-toolkit.runDoctor",
+        "title": "RN Toolkit: Run Project Doctor"
+      },
+      {
+        "command": "rn-developer-toolkit.createComponent",
+        "title": "RN Toolkit: Create Component"
       }
     ]
   },
