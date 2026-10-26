@@ -3,7 +3,7 @@
   "displayName": "RN Development Toolkit",
   "description": "Developer utilities for React Native and Expo",
   "publisher": "animeshmitra",
-  "version": "0.0.1",
+  "version": "1.0.1",
   "engines": {
     "vscode": "^1.140.0"
   },
@@ -65,7 +65,7 @@
       },
       {
         "command": "rn-developer-toolkit.installPackage",
-        "title": "RN Toolkit: Install Package"
+        "title": "RN Toolkit: Search and Install Package"
       },
       {
         "command": "rn-developer-toolkit.easLogin",

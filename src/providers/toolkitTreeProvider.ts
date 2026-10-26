@@ -154,8 +154,8 @@ export class ToolkitTreeProvider
       case 'Packages':
         return [
           this.createNode({
-            label: 'Install Package',
-            description: 'by name',
+            label: 'Search & Install Package',
+            description: 'search npm',
             command: 'rn-developer-toolkit.installPackage',
             icon: 'add',
           }),

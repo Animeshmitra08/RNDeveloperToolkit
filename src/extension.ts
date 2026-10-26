@@ -6,7 +6,7 @@ import * as path from 'node:path';
 import { ToolkitTreeProvider } from './providers/toolkitTreeProvider';
 import { runExpoCommand } from './commands/expoCommands';
 import { registerEasCommands } from './commands/easCommands';
-import { installPackage } from './commands/packageCommands';
+import { installPackage } from './commands/packageInstaller';
 import { createComponent } from './generators/componentGenerator';
 
 export function activate(context: vscode.ExtensionContext) {
@@ -140,26 +140,26 @@ export function activate(context: vscode.ExtensionContext) {
     }
   );
 
+  registerEasCommands(context);
+
+  const createComponentCommand = vscode.commands.registerCommand(
+    'rn-developer-toolkit.createComponent',
+    createComponent
+  );
+
   const installPackageCommand = vscode.commands.registerCommand(
     'rn-developer-toolkit.installPackage',
     installPackage
   );
 
-  registerEasCommands(context);
-
-  const createComponentCommand = vscode.commands.registerCommand(
-	'rn-developer-toolkit.createComponent',
-	createComponent
+  const generatorComingSoon = vscode.commands.registerCommand(
+    'rn-developer-toolkit.generatorComingSoon',
+    () => {
+      vscode.window.showInformationMessage(
+        'This generator is coming soon.'
+      );
+    }
   );
-
-//   const generatorComingSoon = vscode.commands.registerCommand(
-//     'rn-developer-toolkit.generatorComingSoon',
-//     () => {
-//       vscode.window.showInformationMessage(
-//         'This generator will be implemented in Step 5.'
-//       );
-//     }
-//   );
 
   const runDoctor = vscode.commands.registerCommand(
     'rn-developer-toolkit.runDoctor',
@@ -264,7 +264,8 @@ export function activate(context: vscode.ExtensionContext) {
     expoFixDependencies,
     expoPrebuildClean,
     installPackageCommand,
-	createComponentCommand,
+    createComponentCommand,
+    generatorComingSoon,
     runDoctor
   );
 }
