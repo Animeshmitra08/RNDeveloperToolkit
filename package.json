@@ -3,7 +3,8 @@
   "displayName": "RN Development Toolkit",
   "description": "Developer utilities for React Native and Expo",
   "publisher": "animeshmitra",
-  "version": "1.0.1",
+  "version": "1.0.2",
+  "icon": "resources/rn-toolkit-vscode-128.png",
   "engines": {
     "vscode": "^1.140.0"
   },
@@ -110,6 +111,58 @@
       {
         "command": "rn-developer-toolkit.easCredentials",
         "title": "RN Toolkit: EAS Manage Credentials"
+      },
+      {
+        "command": "rn-developer-toolkit.gitStatus",
+        "title": "RN Toolkit: Git Status"
+      },
+      {
+        "command": "rn-developer-toolkit.gitAddAll",
+        "title": "RN Toolkit: Git Add All"
+      },
+      {
+        "command": "rn-developer-toolkit.gitAddFiles",
+        "title": "RN Toolkit: Git Add Files..."
+      },
+      {
+        "command": "rn-developer-toolkit.gitCommit",
+        "title": "RN Toolkit: Git Commit"
+      },
+      {
+        "command": "rn-developer-toolkit.gitPush",
+        "title": "RN Toolkit: Git Push"
+      },
+      {
+        "command": "rn-developer-toolkit.gitPublishNewRepo",
+        "title": "RN Toolkit: Git Publish to New Repository"
+      },
+      {
+        "command": "rn-developer-toolkit.gitPull",
+        "title": "RN Toolkit: Git Pull"
+      },
+      {
+        "command": "rn-developer-toolkit.gitFetch",
+        "title": "RN Toolkit: Git Fetch"
+      },
+      {
+        "command": "rn-developer-toolkit.gitSwitchBranch",
+        "title": "RN Toolkit: Git Switch Branch"
+      },
+      {
+        "command": "rn-developer-toolkit.gitNewBranch",
+        "title": "RN Toolkit: Git New Branch"
+      },
+      {
+        "command": "rn-developer-toolkit.gitStash",
+        "title": "RN Toolkit: Git Stash Changes"
+      },
+      {
+        "command": "rn-developer-toolkit.gitStashPop",
+        "title": "RN Toolkit: Git Pop Stash"
+      },
+      {
+        "command": "rn-developer-toolkit.gitLog",
+        "title": "RN Toolkit: Git Recent Commits"
       },
       {
         "command": "rn-developer-toolkit.generatorComingSoon",

@@ -6,6 +6,7 @@ import * as path from 'node:path';
 import { ToolkitTreeProvider } from './providers/toolkitTreeProvider';
 import { runExpoCommand } from './commands/expoCommands';
 import { registerEasCommands } from './commands/easCommands';
+import { registerGitCommands } from './commands/gitCommands';
 import { installPackage } from './commands/packageInstaller';
 import { createComponent } from './generators/componentGenerator';
 
@@ -141,6 +142,7 @@ export function activate(context: vscode.ExtensionContext) {
   );
 
   registerEasCommands(context);
+  registerGitCommands(context);
 
   const createComponentCommand = vscode.commands.registerCommand(
     'rn-developer-toolkit.createComponent',

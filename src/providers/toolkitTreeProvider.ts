@@ -70,6 +70,11 @@ export class ToolkitTreeProvider
           icon: 'cloud',
         }),
         this.createNode({
+          label: 'Git',
+          collapsible: true,
+          icon: 'source-control',
+        }),
+        this.createNode({
           label: 'Project Doctor',
           collapsible: true,
           icon: 'checklist',
@@ -220,6 +225,82 @@ export class ToolkitTreeProvider
             label: 'Manage Credentials',
             command: 'rn-developer-toolkit.easCredentials',
             icon: 'key',
+          }),
+        ];
+
+      case 'Git':
+        return [
+          this.createNode({
+            label: 'Status',
+            command: 'rn-developer-toolkit.gitStatus',
+            icon: 'git-compare',
+          }),
+          this.createNode({
+            label: 'Add All',
+            description: 'git add -A',
+            command: 'rn-developer-toolkit.gitAddAll',
+            icon: 'add',
+          }),
+          this.createNode({
+            label: 'Add Files...',
+            description: 'pick files to stage',
+            command: 'rn-developer-toolkit.gitAddFiles',
+            icon: 'diff-added',
+          }),
+          this.createNode({
+            label: 'Commit',
+            command: 'rn-developer-toolkit.gitCommit',
+            icon: 'git-commit',
+          }),
+          this.createNode({
+            label: 'Push',
+            description: 'publishes new branches',
+            command: 'rn-developer-toolkit.gitPush',
+            icon: 'repo-push',
+          }),
+          this.createNode({
+            label: 'Publish to New Repository',
+            description: 'init, commit, add origin, push',
+            command: 'rn-developer-toolkit.gitPublishNewRepo',
+            icon: 'cloud-upload',
+          }),
+          this.createNode({
+            label: 'Pull',
+            command: 'rn-developer-toolkit.gitPull',
+            icon: 'repo-pull',
+          }),
+          this.createNode({
+            label: 'Fetch',
+            description: '--all --prune',
+            command: 'rn-developer-toolkit.gitFetch',
+            icon: 'git-fetch',
+          }),
+          this.createNode({
+            label: 'Switch Branch',
+            command: 'rn-developer-toolkit.gitSwitchBranch',
+            icon: 'git-branch',
+          }),
+          this.createNode({
+            label: 'New Branch',
+            command: 'rn-developer-toolkit.gitNewBranch',
+            icon: 'git-branch-create',
+          }),
+          this.createNode({
+            label: 'Stash Changes',
+            description: 'includes untracked',
+            command: 'rn-developer-toolkit.gitStash',
+            icon: 'git-stash',
+          }),
+          this.createNode({
+            label: 'Pop Stash',
+            command: 'rn-developer-toolkit.gitStashPop',
+            icon: 'git-stash-pop',
+          }),
+          this.createNode({
+            label: 'Recent Commits',
+            description: 'last 20',
+            command: 'rn-developer-toolkit.gitLog',
+            icon: 'history',
           }),
         ];
 
